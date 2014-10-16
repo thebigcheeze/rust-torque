@@ -24,9 +24,9 @@ fn parse_params(input: &str) -> Vec<Parameter> {
     
     for c in input.chars() {
         match (cur, c) {
-            (PreParse, '?') => {continue;},
+            (PreParse, '?') => {cur = ParsingName;},
             (PreParse, _) => {
-                cur = ParsingName;
+                continue;
             },
             (ParsingName, '=') => {
                 cur = ParsingValue;
