@@ -1,0 +1,55 @@
+[root]
+name = "torque_reciever"
+version = "0.0.1"
+dependencies = [
+ "postgres 0.0.0 (git+https://github.com/sfackler/rust-postgres#e73557cce0dc13fddfdc503338f744ea0ff0260a)",
+ "tiny_http 0.0.1 (git+https://github.com/tomaka/tiny-http#7a337cc319c23c7a5c37e3d397f2d7adb1a52ab7)",
+ "url 0.1.0 (git+https://github.com/servo/rust-url#55b18b796ef2cef5490069dd450c60c2cc2c0c1b)",
+]
+
+[[package]]
+name = "encoding"
+version = "0.1.0"
+source = "git+http://github.com/lifthrasiir/rust-encoding#16aff34b35e68b0f3a23e4d9dcff4f23cea2a414"
+
+[[package]]
+name = "openssl"
+version = "0.0.0"
+source = "git+https://github.com/sfackler/rust-openssl#fa951b438418c90d68fdf687a4e636f0cade7fc0"
+
+[[package]]
+name = "phf"
+version = "0.0.0"
+source = "git+https://github.com/sfackler/rust-phf#996edc690403b57e9a11ee3fb920a5f5c6dc9aef"
+
+[[package]]
+name = "phf_mac"
+version = "0.0.0"
+source = "git+https://github.com/sfackler/rust-phf#996edc690403b57e9a11ee3fb920a5f5c6dc9aef"
+
+[[package]]
+name = "postgres"
+version = "0.0.0"
+source = "git+https://github.com/sfackler/rust-postgres#e73557cce0dc13fddfdc503338f744ea0ff0260a"
+dependencies = [
+ "openssl 0.0.0 (git+https://github.com/sfackler/rust-openssl#fa951b438418c90d68fdf687a4e636f0cade7fc0)",
+ "phf 0.0.0 (git+https://github.com/sfackler/rust-phf#996edc690403b57e9a11ee3fb920a5f5c6dc9aef)",
+ "phf_mac 0.0.0 (git+https://github.com/sfackler/rust-phf#996edc690403b57e9a11ee3fb920a5f5c6dc9aef)",
+]
+
+[[package]]
+name = "tiny_http"
+version = "0.0.1"
+source = "git+https://github.com/tomaka/tiny-http#7a337cc319c23c7a5c37e3d397f2d7adb1a52ab7"
+dependencies = [
+ "encoding 0.1.0 (git+http://github.com/lifthrasiir/rust-encoding#16aff34b35e68b0f3a23e4d9dcff4f23cea2a414)",
+]
+
+[[package]]
+name = "url"
+version = "0.1.0"
+source = "git+https://github.com/servo/rust-url#55b18b796ef2cef5490069dd450c60c2cc2c0c1b"
+dependencies = [
+ "encoding 0.1.0 (git+http://github.com/lifthrasiir/rust-encoding#16aff34b35e68b0f3a23e4d9dcff4f23cea2a414)",
+]
+

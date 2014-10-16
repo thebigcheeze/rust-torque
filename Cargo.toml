@@ -1,0 +1,14 @@
+[package]
+
+name = "torque_reciever"
+version = "0.0.1"
+authors = ["tracyr"]
+
+[dependencies.tiny_http]
+git = "https://github.com/tomaka/tiny-http"
+
+[dependencies.postgres]
+git = "https://github.com/sfackler/rust-postgres"
+
+[dependencies.url]
+git = "https://github.com/servo/rust-url"
