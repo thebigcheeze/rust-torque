@@ -3,18 +3,6 @@ extern crate postgres;
 
 use postgres::{PostgresConnection, NoSsl};
 
-struct EventRec {
-    event_id : i64,
-    session : i64,
-    time : i64
-}
-
-struct Datapoint {
-    event_id : i64,
-    name: String,
-    value: f64
-}
-
 struct Parameter {
     name: String,
     value: String
@@ -82,7 +70,10 @@ fn main() {
 
     let db = pg_connect();
 
-    for request in server.incoming_requests() {
+    spawn(proc() {for request in server.incoming_requests() {
+        let good_response = tiny_http::Response::from_string("OK!".to_string());
+        let bad_response = tiny_http::Response::from_string("BAD!".to_string());
+
         println!("Got request: {}", request.get_url());
         let parsed_params = parse_params(request.get_url());
         
@@ -116,11 +107,13 @@ fn main() {
 
         if session < 0 {
             println!("No session found.");
+            request.respond(bad_response);
             continue;
         }
 
         if time < 0 {
             println!("No time found.");
+            request.respond(bad_response);
             continue;
         }
 
@@ -134,6 +127,7 @@ fn main() {
         
         if event_id < 0i64 {
             println!("event id did not return a valid value: {}", event_id);
+            request.respond(bad_response);
             continue;
         }
 
@@ -144,10 +138,9 @@ fn main() {
                               &[&event_id, &param.name]).unwrap();
             }
         }
-        
 
-        let response = tiny_http::Response::from_string("OK!".to_string());
+        request.respond(good_response);
+    }});
 
-        request.respond(response);
-    }
+    println!("Setup complete!");
 }
